@@ -1,11 +1,11 @@
 package com.app.productservice.controllers;
 
+import com.app.productservice.exceptions.ProductNotFoundException;
 import com.app.productservice.modals.Product;
 import com.app.productservice.services.ProductService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -16,22 +16,46 @@ public class ProductController {
 
     private final ProductService productService;
 
+
     public ProductController(ProductService productService){
         this.productService = productService;
     }
 
-    @GetMapping("/get/{id}")
-    public Product getProductById(@PathVariable("id") long id ){
+    @GetMapping("/{id}")
+    public ResponseEntity<Product> getProductById(@PathVariable("id") long id ) throws ProductNotFoundException {
 
-        return productService.getProduct(id);
+
+
+        Product product = productService.getProduct(id);
+//        if(product == null){
+//           return new ResponseEntity<>(HttpStatus.BAD_REQUEST);;
+//        }
+            return new ResponseEntity<>(product, HttpStatus.OK);
 
     }
 
     @GetMapping
-    public List<Product> getAllProducts(){
+    public ResponseEntity<List<Product>> getAllProducts(){
 
-        return productService.getAllProducts();
 
+        List<Product> products = productService.getAllProducts();
+//        if(products == null){
+//            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);;
+//        }
+        return new ResponseEntity<>(products, HttpStatus.OK);
+
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Product> replaceProduct(@PathVariable long id, @RequestBody Product product){
+
+        Product rProduct =productService.updateProduct(id, product);
+
+        if(rProduct == null){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+
+        return new ResponseEntity<>(rProduct, HttpStatus.OK);
     }
 
 
