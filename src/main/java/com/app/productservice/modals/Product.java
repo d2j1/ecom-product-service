@@ -1,18 +1,23 @@
 package com.app.productservice.modals;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class Product {
+@Entity
+public class Product extends BaseModal {
 
 
-    private long id;
     private String title;
     private String description;
     private double price;
     private String image;
+
+    @ManyToOne
     private Category category;
 
 

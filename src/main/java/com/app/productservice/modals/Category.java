@@ -1,13 +1,15 @@
 package com.app.productservice.modals;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class Category {
+@Entity
+public class Category extends BaseModal{
 
-    private long id;
     private String description;
 
 }
