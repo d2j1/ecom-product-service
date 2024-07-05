@@ -58,6 +58,16 @@ public class ProductController {
         return new ResponseEntity<>(rProduct, HttpStatus.OK);
     }
 
+    @PostMapping
+    public ResponseEntity<Product> createProduct( @RequestBody Product product){
 
+        Product rProduct =productService.createProduct(product);
+
+        if(rProduct == null){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+
+        return new ResponseEntity<>(rProduct, HttpStatus.CREATED);
+    }
 
 }
