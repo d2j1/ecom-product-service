@@ -1,8 +1,6 @@
 package com.app.productservice.modals;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -17,7 +15,8 @@ public class Product extends BaseModal {
     private double price;
     private String image;
 
-    @ManyToOne
+    @ManyToOne( cascade = CascadeType.ALL)
+    @JoinColumn
     private Category category;
 
 

@@ -5,13 +5,14 @@ import com.app.productservice.modals.Product;
 import com.app.productservice.services.ProductService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/products")
-
+@Component
 public class ProductController {
 
     private final ProductService productService;
