@@ -1,5 +1,6 @@
 package com.app.productservice.modals;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -15,8 +16,8 @@ public class Product extends BaseModal {
     private double price;
     private String image;
 
-    @ManyToOne( cascade = CascadeType.ALL)
-    @JoinColumn
+    @ManyToOne
+    @JoinColumn(name = "category_id", nullable = false)
     private Category category;
 
 

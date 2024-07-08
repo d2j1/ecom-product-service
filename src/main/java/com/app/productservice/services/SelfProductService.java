@@ -69,7 +69,7 @@ public class SelfProductService implements ProductService {
 
     @Override
     public void deleteProduct(long id) {
-
+        this.productRepository.deleteById(id);
     }
 
     @Override
