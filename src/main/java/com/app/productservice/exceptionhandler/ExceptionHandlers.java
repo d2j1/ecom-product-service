@@ -1,4 +1,6 @@
 package com.app.productservice.exceptionhandler;
+import com.app.productservice.exceptions.CategoryNotFoundException;
+import com.app.productservice.exceptions.CategoryNotFoundExceptionDTO;
 import com.app.productservice.exceptions.ProductNotFoundException;
 import com.app.productservice.exceptions.ProductNotFoundExceptionDTO;
 import org.springframework.http.HttpStatus;
@@ -32,6 +34,14 @@ public class ExceptionHandlers {
 
         ProductNotFoundExceptionDTO dto = new ProductNotFoundExceptionDTO();
         dto.setMessage( "Product with id "+e.getId()+" not found");
+        return new ResponseEntity<>(dto , HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(CategoryNotFoundException.class)
+    public ResponseEntity<CategoryNotFoundExceptionDTO> handleCategoryNotFoundException(CategoryNotFoundException e) {
+
+        CategoryNotFoundExceptionDTO dto = new CategoryNotFoundExceptionDTO();
+        dto.setMessage( "Category with id "+e.getId()+" not found");
         return new ResponseEntity<>(dto , HttpStatus.NOT_FOUND);
     }
 }

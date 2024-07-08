@@ -48,9 +48,9 @@ public class ProductController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Product> replaceProduct(@PathVariable long id, @RequestBody Product product){
+    public ResponseEntity<Product> replaceProduct(@PathVariable long id, @RequestBody Product product) throws ProductNotFoundException {
 
-        Product rProduct =productService.updateProduct(id, product);
+        Product rProduct =productService.replaceProduct(id, product);
 
         if(rProduct == null){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
