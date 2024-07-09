@@ -1,6 +1,4 @@
 package com.app.productservice.modals;
-
-
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
