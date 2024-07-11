@@ -42,11 +42,7 @@ public class SelfProductService implements ProductService {
         return productRepository.findAll();
     }
 
-    @Override
-    public Product updateProduct(long id, Product product) {
 
-        return null;
-    }
 
     @Override
     public Product createProduct(Product product) {
