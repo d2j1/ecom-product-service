@@ -27,8 +27,9 @@ class ProductControllerTest {
         Product product1 = new Product();
         product1.setId(1L);
 
+        String token = "";
         when(productService.getProduct(1L)).thenReturn(product1);
-        Product actualObject = productController.getProductById(1L).getBody(); // here getBody is helping us to get the body from the response entity
+        Product actualObject = productController.getProductById(1L,token ).getBody(); // here getBody is helping us to get the body from the response entity
 
         assertNotNull(actualObject);
 
@@ -47,5 +48,25 @@ class ProductControllerTest {
 
     @Test
     void createProduct() {
+    }
+
+    @Test
+    void testGetProductById() {
+    }
+
+    @Test
+    void testGetAllProducts() {
+    }
+
+    @Test
+    void testReplaceProduct() {
+    }
+
+    @Test
+    void testCreateProduct() {
+    }
+
+    @Test
+    void deleteProduct() {
     }
 }
