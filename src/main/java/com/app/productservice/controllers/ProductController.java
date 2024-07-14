@@ -5,6 +5,7 @@ import com.app.productservice.dto.UserDto;
 import com.app.productservice.exceptions.ProductNotFoundException;
 import com.app.productservice.modals.Product;
 import com.app.productservice.services.ProductService;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
@@ -66,6 +67,16 @@ public class ProductController {
 
         return new ResponseEntity<>(rProduct, HttpStatus.OK);
     }
+
+
+    // Endpoint to fetch paginated products
+    @GetMapping("/products")
+    public Page<Product> getAllProducts(
+            @RequestParam(defaultValue = "0") int pageNo,
+            @RequestParam(defaultValue = "10") int pageSize) {
+        return productService.getAllProductsPagination(pageNo, pageSize);
+    }
+
 
     @PostMapping
     public ResponseEntity<Product> createProduct( @RequestBody Product product){

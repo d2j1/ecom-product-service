@@ -6,7 +6,10 @@ import com.app.productservice.modals.Product;
 import com.app.productservice.repository.CategoryRepository;
 import com.app.productservice.repository.ProductRepository;
 import org.springframework.context.annotation.Primary;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.data.domain.Page;
 
 import java.util.List;
 import java.util.Optional;
@@ -98,5 +101,11 @@ public class SelfProductService implements ProductService {
         }
 
 
+    }
+
+    // Method to fetch products with pagination
+    public Page<Product> getAllProductsPagination(int pageNo, int pageSize) {
+        Pageable pageable = PageRequest.of(pageNo, pageSize);
+        return productRepository.findAll(pageable);
     }
 }
