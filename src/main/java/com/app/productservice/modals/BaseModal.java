@@ -13,6 +13,9 @@ public abstract class BaseModal {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Enumerated(EnumType.STRING)
+    private State state;
+
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "created_at", nullable = false, updatable = false)
     private Date createdAt;
@@ -21,10 +24,15 @@ public abstract class BaseModal {
     @Column(name = "updated_at", nullable = false)
     private Date updatedAt;
 
+
     @PrePersist
     protected void onCreate() {
         createdAt = new Date();
         updatedAt = createdAt;
+
+        if( state == null){
+            state = State.ACTIVE;
+        }
     }
 
     @PreUpdate
